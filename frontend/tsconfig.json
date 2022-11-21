@@ -22,9 +22,6 @@
       "dom"
     ],
     "paths": {
-      "@core/mainframe-connector": [
-        "libs/mainframe-connector/src/index.ts"
-      ]
     },
     "rootDir": "."
   },
