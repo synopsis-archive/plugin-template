@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CorePlugin.Plugin\CorePlugin.Plugin.csproj" />
+      <ProjectReference Include="..\core\Core.AuthLib\Core.AuthLib.csproj" />
     </ItemGroup>
 
 </Project>
