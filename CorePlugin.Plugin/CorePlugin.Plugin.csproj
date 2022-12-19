@@ -7,6 +7,10 @@
         <RootNamespace>PluginPolls.PollsDb</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">
+        <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    </PropertyGroup>
+    
     <ItemGroup>
       <ProjectReference Include="..\core\Core.AuthLib\Core.AuthLib.csproj" />
       <ProjectReference Include="..\core\Core.Plugin.Interface\Core.Plugin.Interface.csproj" />
