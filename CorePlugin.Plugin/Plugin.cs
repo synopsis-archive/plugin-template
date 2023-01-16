@@ -1,7 +1,7 @@
 ﻿using Core.Plugin.Interface;
 using Microsoft.AspNetCore.Builder;
 
-namespace PluginPolls.PollsDb;
+namespace CorePlugin.Plugin;
 
 public class Plugin : ICorePlugin
 {
