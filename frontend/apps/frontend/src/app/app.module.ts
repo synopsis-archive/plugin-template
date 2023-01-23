@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
+  // use environment.backend as reference to the backend URL
   providers: [],
   bootstrap: [AppComponent]
 })
