@@ -25,13 +25,12 @@ plugin.
 
 ### Plugin-Interface
 
-Plugins need to implement the `ICorePlugin` Interface of the core project in order to be loaded by the backend. WIth this interface you can implement the two methods `Configure` and `ConfigureServices`. 
+Plugins need to implement the `ICorePlugin` Interface of the core project in order to be loaded by the backend. WIth this interface you can implement the two methods `Configure` and `ConfigureServices`.
 
 `Configure` - Using this method you can register your controllers. You are given the `app` object to configure the app's request handling pipeline and their middleware components.
 
 `ConfigureServices` - Using this method you can register your classes for dependency injection. You are given the `builder` object of the backend to add new services.
 
-### Frontend 
+### Frontend
 
 `frontend` contains an empty angular project with tailwindcss already configured.
-
