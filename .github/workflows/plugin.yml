@@ -25,7 +25,7 @@ jobs:
         with:
           path: |
             frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build
@@ -58,7 +58,7 @@ jobs:
           path: |
             CorePlugin.Plugin/obj
             CorePlugin.Plugin/bin
-          key: ${{ runner.os }}-dotnet-${{ hashFiles('**/*.csproj') }}
+          key: ${{ runner.os }}-dotnet-${{ matrix.dotnet-version }}-${{ hashFiles('**/*.csproj') }}
       - name: Install dependencies
         run: dotnet restore
       - name: Build
@@ -90,12 +90,16 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: plugin-frontend
-          path: frontend.zip
+          path: frontend/
       - name: Download backend artifact
         uses: actions/download-artifact@v3
         with:
           name: plugin-backend
-          path: backend.zip
+          path: backend/
+      - name: Zip frontend artifact
+        run: zip -r frontend.zip frontend
+      - name: Zip backend artifact
+        run: zip -r backend.zip backend
       - name: Upload frontend artifact
         uses: actions/upload-release-asset@v1
         env:
