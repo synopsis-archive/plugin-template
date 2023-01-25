@@ -34,11 +34,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: plugin-frontend
-          path: frontend/dist
+          path: frontend/dist/apps/frontend
   backend:
     name: Backend
     runs-on: ubuntu-latest
-    defaults: 
+    defaults:
       run:
         working-directory: CorePlugin.Plugin
     strategy:
