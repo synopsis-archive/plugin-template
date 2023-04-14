@@ -7,7 +7,7 @@ namespace CorePlugin.Plugin.Controllers;
 #warning This is a sample controller, should be deleted in your plugin.
 [ApiController]
 [Route("[controller]/[action]")]
-public class SampleController: ControllerBase
+public class SampleController : ControllerBase
 {
     [HttpGet]
     public ActionResult<SampleDto> Test() => Ok(new SampleDto { Description = "Hello World!" });
