@@ -1,10 +1,29 @@
-<div>
-  <span><b>Without Authorization</b></span><br>
-  <span [ngClass]="getClass(withoutAuth)">
-    {{withoutAuth ? 'Works!' : 'Connection not possible. Is your Backend running?'}}
-  </span><br>
-  <span><b>With Authorization</b></span><br>
-  <span [ngClass]="getClass(withAuth)">
-    {{withAuth ? 'Works!' : 'Connection not possible. Is your Backend running and is your Authorization Token correct?'}}
-  </span>
+<div class="m-2">
+  <h1>Api-Requests</h1>
+  <div class="m-2">
+    <span><b>Without Authorization</b></span><br>
+    <span [ngClass]="getClass(withoutAuth)">
+      {{withoutAuth ? 'Works!' : 'Connection not possible. Is your Backend running?'}}
+    </span><br>
+    <span><b>With Authorization</b></span><br>
+    <span [ngClass]="getClass(withAuth)">
+      {{withAuth ? 'Works!' : 'Connection not possible. Is your Backend running and is your Authorization Token correct?'}}
+    </span><br>
+    <span><b>Database Request</b></span><br>
+    <span [ngClass]="getClass(databaseRequest)">
+      {{databaseRequest ? 'Works!' : 'Connection not possible. Is your Backend running, db OK and your Authorization Token correct?'}}
+    </span>
+  </div>
+  <h1>SignalR-Requests</h1>
+  <div>
+    <span><b>Received Server Messages</b></span>
+    <ol>
+      <li *ngFor="let message of signalRMessages">{{message}}</li>
+    </ol>
+    <br>
+    <span><b>Sent to server</b></span><br>
+    <span [ngClass]="getClass(signalRWithoutAuth)">
+      {{signalRWithoutAuth ? 'Works!' : 'Connection not possible. Is your Hub running?'}}
+    </span>
+  </div>
 </div>

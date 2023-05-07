@@ -1,11 +1,11 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Core.Backend;
+namespace CorePlugin.Plugin;
 
-public static partial class ConfigurationExtensions
+public static class ConfigurationExtensions
 {
-    public static string? GetConnectionStringThatAlsoWorksInProduction(this IConfiguration configuration, string name, bool isDevelopment = false)
-    {
-        return configuration.GetConnectionString(isDevelopment ? name : "Production")?.Replace("core", name.ToLower()) ?? null;
-    }
+    public static string? GetConnectionString(this IConfiguration configuration, string name, bool isDevelopment = false)
+        => Microsoft.Extensions.Configuration.ConfigurationExtensions
+            .GetConnectionString(configuration, isDevelopment ? name : "Production")?
+            .Replace("core", name.ToLower()) ?? null;
 }

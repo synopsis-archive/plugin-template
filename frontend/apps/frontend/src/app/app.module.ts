@@ -6,19 +6,13 @@ import {ApiModule, Configuration} from './backend';
 import {HttpClientModule} from '@angular/common/http';
 import {ConfigurationService} from "./core/configuration.service";
 
-export function initConfig(configService: ConfigurationService): () => Promise<void> {
-  return async () => {
-    await configService.init();
-  };
-}
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, ApiModule, HttpClientModule],
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: initConfig,
+      useFactory: (configService: ConfigurationService) => () => configService.init(),
       deps: [ConfigurationService],
       multi: true
     },

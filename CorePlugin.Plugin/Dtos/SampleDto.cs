@@ -2,7 +2,7 @@
 
 namespace CorePlugin.Plugin.Dtos;
 
-#warning This is a sample DTO, it should be deleted in your plugin.
+#warning This is just a sample. Replace it with your own.
 public class SampleDto
 {
     [Required] public string Description { get; set; } = null!;

@@ -1,5 +1,7 @@
-﻿using Core.Backend;
-using Core.Plugin.Interface;
+﻿using Core.Plugin.Interface;
+using CorePlugin.Plugin.Hubs;
+using CorePlugin.Plugin.Services;
+using CorePlugin.SampleDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +15,16 @@ public class Plugin : ICorePlugin
     {
         //TODO: Add your own services here (e.g. database context, services, etc.)
         builder.Services.AddControllers();
+        //TODO: The lines below are sample SignalR services. You can remove them if you want.
+        builder.Services.AddSignalR();
+        builder.Services.AddHostedService<RandomMessageBackgroundService>();
 
-        /*builder.Services.AddDbContext<PluginContext>(db =>
+        // TODO: If you're using a database context, it should be added like this:
+        // TODO: Change "SampleConnectionString" to the your preferred connection string in appsettings.json
+        // TODO: It can be found at CorePlugin.BackendDevServer\appsettings.json
+        builder.Services.AddDbContext<SampleDbContext>(db =>
         {
-            // USE THIS IF YOU WANT THAT THE PLUGIN WORKS IN PRODUCTION!!!!111
-            var connectionString = builder.Configuration.GetConnectionStringThatAlsoWorksInProduction("PollsDatabaseConnection", builder.Environment.IsDevelopment());
+            var connectionString = builder.Configuration.GetConnectionString("SampleConnectionString", builder.Environment.IsDevelopment());
             if (builder.Environment.IsDevelopment())
             {
                 db.UseSqlite(connectionString);
@@ -26,12 +33,15 @@ public class Plugin : ICorePlugin
             {
                 db.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             }
-        });*/
+        });
+        builder.Services.AddTransient<SampleDbService>();
     }
 
     public void Configure(WebApplication app)
     {
-        //TODO: Eventually add your own middleware here (e.g. SignalR, etc.)
+        //TODO: Add your own middleware here (e.g. SignalR, etc.)
+        //TODO: If you're not using SignalR, you can remove the line below
+        app.MapHub<SampleHub>("hubs/sample");
         app.MapControllers();
     }
 }
