@@ -8,13 +8,17 @@ import {environment} from "../../environments/environment";
 export class SignalRService {
   private hubConnection: HubConnection | undefined;
 
-  async startConnection(): Promise<void> {
+  async startConnection(token: string): Promise<void> {
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(
         `${environment.backend}/${environment.hubUrl}`,
         {
+          //TODO: Negotiation should not be skipped anymore, therefore CORS needs to be configured correctly
+          //TODO: Remove this workaround
           skipNegotiation: true,
           transport: HttpTransportType.WebSockets,
+
+          accessTokenFactory: () => token
         }
       )
       .build();

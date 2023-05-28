@@ -15,15 +15,20 @@
     </span>
   </div>
   <h1>SignalR-Requests</h1>
-  <div>
+  <div class="m-2">
     <span><b>Received Server Messages</b></span>
     <ol>
       <li *ngFor="let message of signalRMessages">{{message}}</li>
     </ol>
     <br>
     <span><b>Sent to server</b></span><br>
+    <span>Without Auth</span><br>
     <span [ngClass]="getClass(signalRWithoutAuth)">
       {{signalRWithoutAuth ? 'Works!' : 'Connection not possible. Is your Hub running?'}}
+    </span><br>
+    <span>With Auth</span><br>
+    <span [ngClass]="getClass(signalRWithAuth)">
+      {{signalRWithAuth ? 'Works!' : 'Connection not possible. Is your Hub running?'}}
     </span>
   </div>
 </div>

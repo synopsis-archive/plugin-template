@@ -1,4 +1,5 @@
 ﻿using CorePlugin.Plugin.Hubs.HubInterfaces.SampleHubInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace CorePlugin.Plugin.Hubs;
@@ -7,4 +8,7 @@ namespace CorePlugin.Plugin.Hubs;
 public class SampleHub : Hub<ISampleServerToClient>, ISampleClientToServer
 {
     public Task<string> Ping() => Task.FromResult("Pong!");
+
+    [Authorize]
+    public Task<string> PingAuthorized() => Task.FromResult("PongAuthorized!");
 }

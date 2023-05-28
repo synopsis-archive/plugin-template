@@ -20,7 +20,7 @@ export class ConfigurationService {
       },
       basePath: environment.backend
     });
-    await this.signalRHub.startConnection();
+    await this.signalRHub.startConnection(token);
   }
 
   getConfig(): Configuration {
