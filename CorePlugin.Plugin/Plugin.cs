@@ -24,7 +24,7 @@ public class Plugin : ICorePlugin
         // TODO: It can be found at CorePlugin.BackendDevServer\appsettings.json
         builder.Services.AddDbContext<SampleDbContext>(db =>
         {
-            var connectionString = builder.Configuration.GetConnectionString("SampleConnectionString", builder.Environment.IsDevelopment());
+            var connectionString = builder.Configuration.GetConnectionStringThatAlsoWorksInProduction("SampleConnectionString", builder.Environment.IsDevelopment());
             if (builder.Environment.IsDevelopment())
             {
                 db.UseSqlite(connectionString);
